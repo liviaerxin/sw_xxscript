@@ -1,6 +1,3 @@
-package.path = package.path .. ";?.lua"
-Point = require("Point")
-
 local Rect = {}
 Rect.__index = Rect
 
@@ -43,11 +40,11 @@ end
 -- end
 
 function Rect:center()
-    return Point((self.x1 + self.x2)/2, (self.y1 + self.y2)/2)
+    return (self.x1 + self.x2)/2, (self.y1 + self.y2)/2
 end
 
 function Rect:random()
-    return Point(math.random(self.x1 + self.x2), math.random(self.y1 + self.y2))
+    return math.random(self.x1, self.x2), math.random(self.y1, self.y2)
 end
 
 function Rect:width()
@@ -56,6 +53,17 @@ end
 
 function Rect:width()
     return self.y2 - self.y1
+end
+
+function Rect:table()
+	return {self.x1,  self.y1, self.x2, self.y2}
+end
+
+function Rect:rectify(x, y)
+	self.x2 = self.x2 + x - self.x1
+	self.y2 = self.y2 + y - self.y1
+	self.x1 = x
+	self.y1 = y
 end
 
 return Rect

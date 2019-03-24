@@ -2,11 +2,29 @@
 size=0
 
 [RES]
-size=0
+1\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174152.png
+10\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174904.png
+11\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323180455.png
+12\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/cairosDungeon.png
+2\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174243.png
+3\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174321.png
+4\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174338.png
+5\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174618.png
+6\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174635.png
+7\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174645.png
+8\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174832.png
+9\RESFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/res/20190323174851.png
+size=12
 
 [SOURCE]
 1\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/main.lua
-size=1
+2\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/README.md
+3\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/test.lua
+4\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/model/Region.lua
+5\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/model/MyClass.lua
+6\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/model/mymath.lua
+7\SOURCEFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/src/model/Rect.lua
+size=7
 
 [UI]
 1\UIFILE=/Users/siyao/Documents/xspworkspace/sw_xxscript/xsp/ui/ui.json
