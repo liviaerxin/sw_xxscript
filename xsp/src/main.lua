@@ -225,6 +225,23 @@ function findVictory()
 	end
 end
 
+--- find FlashInVictory
+function findFlashInVictory()
+	-- local backdropRect= Rect(635,580,727,605)
+	local flashInVictoryRect = Rect(642, 337, 681, 393, false)
+	local x, y = findColor({642, 337, 681, 393}, 
+		"642|337|0x2c1e09,681|393|0x2b1e09,666|337|0xfcfcd0,660|358|0xf7cd65,656|383|0xc88d2d",
+		95, 0, 0, 0)
+	if x > -1 then
+		local rect = flashInVictoryRect:rectify(x, y)
+		print("find Victory: "..rect:toString())
+		return rect
+	else
+		print("not find Victory!!!")
+		return nil
+	end
+end
+
 --- find TreasureBox
 function findTreasureBox()
 	-- local backdropRect= Rect(635,580,727,605)
@@ -422,57 +439,120 @@ do
 		tapRect(rect)
 	end
 end
+mSleep(3000)
+
+do
+	local rect = findB10Battle()
+	-- if it's found
+	if (rect ~= nil) then
+		tapRect(rect)
+	end
+end
+
+mSleep(3000)
+do
+	local rect = findStartBattle()
+	-- if it's found
+	if (rect ~= nil) then
+		tapRect(rect)
+	end
+end
+
+
+function isAuto()
+	local rect = findAuto()
+	if (rect ~= nil) then
+		print("is auto")
+		return true
+	end
+end
+
+function isFighting()
+	local rect = findGear()
+	if (rect ~= nil) then
+		print("is fighting...")
+		return true
+	end
+end
+
+function isVictory()
+	local rect = findVictory()
+	if (rect ~= nil) then
+		print("is victory...")
+		return true
+	end
+end
+
+function isVictory()
+	local rect = findVictory()
+	if (rect ~= nil) then
+		print("is victory...")
+		return true
+	end
+end
+
+function isFlashInVictory()
+	local rect = findFlashInVictory()
+	local rect1 = findVictory()
+	if (rect ~= nil) and (rect1 ~= nil) then
+		print("is flash in victory...")
+		return true
+	end
+end
+
+function isTreasureBox()
+	local rect = findTreasureBox()
+	if (rect ~= nil) then
+		print("is Treasure Box..")
+		return true
+	end
+end
 
 while(true)
 do
 	-- auto fight
-	if isAuto() == 1 then
+	if isAuto() then
 		mSleep(3000)
 	else
-		x, y = autoRegion:random()
-		tap(x, y, 300)
-		mSleep(1000)
+		local rect = findPlay()
+		if (rect ~= nil) then
+			tapRect(rect)
+		end
 	end
 	-- find result
 	
-	if isFighting() == 0 then
-		if isVictory() then 
+	if not isFighting() then
+		if isFlashInVictory() then 
 			local r = Rect(400, 300, 800, 600)
-			x, y = r:random()
-			tap(x, y, 300)
-			mSleep(1400)
-			x, y = r:random()
-			tap(x, y, 200)
-			mSleep(1000)
+			tapRect(r)
+			mSleep(2000)
 		end
-
+		
+		local rect = findTreasureBox()
+			if (rect ~= nil) then
+				tapRect(rect)
+				mSleep(2000)
+			end
+		end
+		
 		-- handle result
-
-		local okRegion=findOkRegion()
-		local getRegion=findGetRegion()
-		if okRegion~=nil then
-			x, y = okRegion:random()
-			tap(x, y, 500)
-			print("ok....")
-			mSleep(1100)
-		elseif getRegion~=nil then
-			x, y = getRegion:random()
-			print("get....")
-			tap(x, y, 510)
-			mSleep(900)
+		local okRect = findOk()
+		local getRect = findGet()
+		if okRect ~= nil then
+			tapRect(okRect)
+			mSleep(2000)
+		elseif getRect ~= nil then
+			tapRect(getRect)
+			mSleep(2000)
 		else
 			print("can not handle result")
 		end
 
-
-
-		local replayRegion = findReplayRegion()
-		if replayRegion ~= nil then
-			x, y = replayRegion:random()
-			print("replay....")
-			tap(x, y, 510)
-			mSleep(1100)
+		local replayRect = findReplay()
+		if replayRect ~= nil then
+			tapRect(replayRect)
+			mSleep(2000)
 		end
-	end
-	mSleep(3100)
+	
+	mSleep(5000)
 end
