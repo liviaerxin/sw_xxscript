@@ -1,20 +1,24 @@
 -- http://lua-users.org/wiki/ObjectOrientationTutorial
-local MyClass = {} -- the table representing the class, which will double as the metatable for the instances
-MyClass.__index = MyClass -- failed table lookups on the instances should fallback to the class table, to get methods
+local MyClass = {}
+MyClass.__index = MyClass
 
--- syntax equivalent to "MyClass.new = function..."
+setmetatable(MyClass, {
+  __call = function (cls, ...)
+    return cls.new(...)
+  end,
+})
+
 function MyClass.new(init)
   local self = setmetatable({}, MyClass)
   self.value = init
   return self
 end
 
-function MyClass.set_value(self, newval)
+-- the : syntax here causes a "self" arg to be implicitly added before any other args
+function MyClass:set_value(newval)
   self.value = newval
 end
 
-function MyClass.get_value(self)
+function MyClass:get_value()
   return self.value
 end
-
-return MyClass

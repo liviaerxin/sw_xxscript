@@ -1,26 +1,29 @@
 local Rect = {}
+
 Rect.__index = Rect
+
 
 setmetatable(Rect, {
     __call = function (cls, ...)
     return cls.new(...)
-  end,
+    end,
 })
 
 -- Initialize the pseudo random number generator
 math.randomseed(os.time())
 math.random(); math.random(); math.random()
 
-function Rect.new(x1, y1, x2, y2, isFloated)
-  local self = setmetatable({}, Rect)
-  assert(x2 > x1, "x2 must be larger than x1")
-  assert(y2 > y1, "y2 must be larger than y1")
-  self.x1 = x1
-  self.y1 = y1
-  self.x2 = x2
-  self.y2 = y2
-  self.isFloated = isFloated or false -- Jack is the default, but if the parameter name is given, name will be used instead
-  return self
+function Rect.new(x1, y1, x2, y2, pattern, isFloated)
+    local self = setmetatable({}, Rect)
+    assert(x2 > x1, "x2 must be larger than x1")
+    assert(y2 > y1, "y2 must be larger than y1")
+    self.x1 = x1
+    self.y1 = y1
+    self.x2 = x2
+    self.y2 = y2
+    self.pattern = pattern
+    self.isFloated = isFloated or false -- `false` is the default, but if the parameter name is given, name will be used instead
+    return self
 end
 
 -- skip properties setter and getter, it's too cumbersome.
@@ -83,5 +86,59 @@ function Rect:rectify(x, y)
 		return Rect(self.x1, self.y1, self.x2, self.y2, false)
 	end
 end
+
+function Rect:float(x, y)
+	if self.isFloated then
+		self.x2 = self.x2 + x - self.x1
+		self.y2 = self.y2 + y - self.y1
+		self.x1 = x
+		self.y1 = y
+	else
+		print("No need to rectify because the rect is not floated")
+	end
+end
+
+-- @param rect Rect
+-- @return boolean
+function Rect:exists(rect)
+    if rect == nil then
+        --- find itself, backdrop region is itself
+        local x, y = self:find(self.pattern)
+        if x > -1 then
+            return true
+        else
+            return false
+        end
+    else
+        --- find the passed rect, backdrop region is itself
+        if rect.isFloated then
+            --- rect is floated
+            local x, y = self:find(rect.pattern)
+            if x > -1 then
+                rect:float(x, y)
+                return true
+            else
+                return false
+            end
+        else
+            --- rect is fixed, so call its exists()
+            return rect:exists()
+        end
+    end
+end
+
+-- @param pattern Pattern
+-- @return boolean
+function Rect:find(pattern)
+    local points = pattern.points
+    local degree = pattern.degree
+    local hdir = pattern.hdir
+    local vdir = pattern.vdir
+    local priority = pattern.priority
+    local x, y = self.x1, self.y1
+    -- local x, y = findColor({self.x1, self.y1, self.x2, self.y2}, points, degree, hdir, vdir, priority)
+    return x, y
+end
+
 
 return Rect

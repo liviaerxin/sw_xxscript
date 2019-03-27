@@ -1,5 +1,7 @@
 init("0", 1)
+Pattern = require("Pattern")
 Rect = require("model.Rect")
+require("rects")
 
 print("sw script starting...")
 
