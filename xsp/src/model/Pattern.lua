@@ -15,7 +15,9 @@ setmetatable(Pattern, {
     the original rect image pixel. For instance on the 100*100 rect, the pattern always 
     has 5 pixels to recognize the rect, contrasting with 10,000 pixels of an intact image.
     Noticing, it must have at least two points, the first point (x1, y1), the top left on 
-    rect, and the second point (x2, y2), the bottom right on the rect.
+    rect, and the second point (x2, y2), the bottom right on the rect. If you are not affirmative
+    on two points color, set their offset color or degree to zero to ignore them when searching.
+    Their main goal is pinpoint relocation for the floated rect. 
 ]]
 
 function Pattern.new(points, degree, hdir, vdir, priority)
