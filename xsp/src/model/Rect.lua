@@ -74,6 +74,14 @@ function Rect:shrink(w, h)
     self.y2 = self.y2 - h
 end
 
+function Rect:resize(w, h)
+    local x1 = self.x1 + w
+    local y1 = self.y1 + h
+    local x2 = self.x2 - w
+    local y2 = self.y2 - h
+    return Rect(x1, y1, x2, y2, nil, false)
+end
+
 function Rect:rectify(x, y)
 	if self.isFloated then
 		local x2 = self.x2 + x - self.x1
@@ -83,7 +91,7 @@ function Rect:rectify(x, y)
 		return Rect(x1, y1, x2, y2, true)
 	else
 		print("No need to rectify because the rect is not floated")
-		return Rect(self.x1, self.y1, self.x2, self.y2, false)
+		return Rect(self.x1, self.y1, self.x2, self.y2, nil, false)
 	end
 end
 
@@ -130,13 +138,16 @@ end
 -- @param pattern Pattern
 -- @return boolean
 function Rect:find(pattern)
+    if pattern == nil then
+        return -1, -1
+    end
     local points = pattern.points
     local degree = pattern.degree
     local hdir = pattern.hdir
     local vdir = pattern.vdir
     local priority = pattern.priority
-    local x, y = self.x1, self.y1
-    -- local x, y = findColor({self.x1, self.y1, self.x2, self.y2}, points, degree, hdir, vdir, priority)
+    -- local x, y = self.x1, self.y1
+    local x, y = findColor({self.x1, self.y1, self.x2, self.y2}, points, degree, hdir, vdir, priority)
     return x, y
 end
 

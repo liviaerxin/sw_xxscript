@@ -1,5 +1,7 @@
 init("0", 1)
-Pattern = require("Pattern")
+print("requiring...")
+
+Pattern = require("model.Pattern")
 Rect = require("model.Rect")
 require("rects")
 
@@ -10,7 +12,10 @@ math.randomseed(os.time())
 math.random(); math.random(); math.random()
 
 
------------------------------- Help functions ----------------------------------------
+local width, height = getScreenSize()
+FullScreen = Rect(0, 0, width, height, nil, false)
+
+------------------------------ Help Functions ----------------------------------------
 -- random point function
 -- @param rect parameter Rect
 function randomPoint(rect)
@@ -433,33 +438,119 @@ function findPurchaseYes()
 	end
 end
 
+
+
+
+----------------------- Operation Methods ----------------------
+function clickDragonB10()
+	if DungeonListRect:exists(DragonLairRect) then
+		tapRect(DragonLairRect)
+		mSleep(2000)
+		mSleep(2000)
+		if DungeonBattleRect:exists(B10BattleButtonRect) then
+			tapRect(B10BattleButtonRect)
+			mSleep(3000)
+			return
+		end
+	end
+	print("not click dragon b10 !")
+	lua_exit()
+end
+
+function clickStart()
+	if StartBattleRect:exists() then
+		tapRect(StartBattleRect)
+		mSleep(5000)
+		return
+	end
+	print("not click start !")
+	lua_exit()
+end
+
+function runDungeon(number)
+	local completedNumber = 0
+	if number == nil then
+		number = 1000
+	end
+	local isGiftBoxFirst = true
+	while (true)
+	do
+		if PlayRect:exists() then
+			tapRect(PlayRect:resize(10, 10))
+			mSleep(1000)
+		else
+			print("is auto fighting")
+		end
+
+		if FlashInVictoryRect:exists() then
+			print("is victory")
+			tapRect(FullScreen:resize(200, 200))
+			mSleep(1230)
+
+			if TreasureBoxRect:exists() then
+				print("find treasure")
+				completedNumber = completedNumber + 1
+				tapRect(TreasureBoxRect)
+				mSleep(1780)
+			end
+
+			if OKButtonRect:exists() then
+				print("click ok")
+				tapRect(OKButtonRect)
+				mSleep(2300)
+			end
+
+			if GetButtonRect:exists() then
+				print("click get")
+				tapRect(GetButtonRect)
+				mSleep(1560)
+			end
+
+			if ReplayRect:exists() then
+				print("click replay")
+				tapRect(ReplayRect)
+				mSleep(1780)
+			end
+
+			if GiftBoxButtonRect:exists() and isGiftBoxFirst then
+				print("search energy in gift box")
+				tapRect(GiftBoxButtonRect)
+				mSleep(1800)
+				
+				if CollectGiftBoxRect:exists() then
+					print("collect energy")
+					tapRect(CollectGiftBoxRect)
+					mSleep(1300)
+				else
+					print("no energy in gift box")
+					isGiftBoxFirst = false
+				end
+
+				if BackGiftBoxRect:exists() then
+					tapRect(BackGiftBoxRect)
+					mSleep(2310)
+				end
+			end
+
+		end
+
+
+		-- completedNumber = completedNumber + 1
+		if (completedNumber > number) then
+			break
+		end
+		mSleep(7000)
+	end
+	print("total run number is: "..completedNumber)
+end
 ------------------------mock procedures -----------------
-do
-	local rect = findDragonLair()
-	-- if it's found
-	if (rect ~= nil) then
-		tapRect(rect)
-	end
-end
-mSleep(3000)
 
-do
-	local rect = findB10Battle()
-	-- if it's found
-	if (rect ~= nil) then
-		tapRect(rect)
-	end
-end
-
-mSleep(3000)
-do
-	local rect = findStartBattle()
-	-- if it's found
-	if (rect ~= nil) then
-		tapRect(rect)
-	end
-end
-
+-- dragon b10 procedure
+-- from cairos dungeon scene
+-- TODO: chekc where I am, and plan a route to the scene
+clickDragonB10()
+clickStart()
+runDungeon(10)
 
 function isAuto()
 	local rect = findAuto()
@@ -473,14 +564,6 @@ function isFighting()
 	local rect = findGear()
 	if (rect ~= nil) then
 		print("is fighting...")
-		return true
-	end
-end
-
-function isVictory()
-	local rect = findVictory()
-	if (rect ~= nil) then
-		print("is victory...")
 		return true
 	end
 end
@@ -510,51 +593,51 @@ function isTreasureBox()
 	end
 end
 
-while(true)
-do
-	-- auto fight
-	if isAuto() then
-		mSleep(3000)
-	else
-		local rect = findPlay()
-		if (rect ~= nil) then
-			tapRect(rect)
-		end
-	end
-	-- find result
+-- while(true)
+-- do
+-- 	-- auto fight
+-- 	if PauseRect:exists() then
+-- 		mSleep(3000)
+-- 	else
+-- 		local rect = findPlay()
+-- 		if (rect ~= nil) then
+-- 			tapRect(rect)
+-- 		end
+-- 	end
+-- 	-- find result
 	
-	if not isFighting() then
-		if isFlashInVictory() then 
-			local r = Rect(400, 300, 800, 600)
-			tapRect(r)
-			mSleep(2000)
-		end
+-- 	if not isFighting() then
+-- 		if isFlashInVictory() then 
+-- 			local r = Rect(400, 300, 800, 600)
+-- 			tapRect(r)
+-- 			mSleep(2000)
+-- 		end
 		
-		local rect = findTreasureBox()
-			if (rect ~= nil) then
-				tapRect(rect)
-				mSleep(2000)
-			end
-		end
+-- 		local rect = findTreasureBox()
+-- 			if (rect ~= nil) then
+-- 				tapRect(rect)
+-- 				mSleep(2000)
+-- 			end
+-- 		end
 		
-		-- handle result
-		local okRect = findOk()
-		local getRect = findGet()
-		if okRect ~= nil then
-			tapRect(okRect)
-			mSleep(2000)
-		elseif getRect ~= nil then
-			tapRect(getRect)
-			mSleep(2000)
-		else
-			print("can not handle result")
-		end
+-- 		-- handle result
+-- 		local okRect = findOk()
+-- 		local getRect = findGet()
+-- 		if okRect ~= nil then
+-- 			tapRect(okRect)
+-- 			mSleep(2000)
+-- 		elseif getRect ~= nil then
+-- 			tapRect(getRect)
+-- 			mSleep(2000)
+-- 		else
+-- 			print("can not handle result")
+-- 		end
 
-		local replayRect = findReplay()
-		if replayRect ~= nil then
-			tapRect(replayRect)
-			mSleep(2000)
-		end
+-- 		local replayRect = findReplay()
+-- 		if replayRect ~= nil then
+-- 			tapRect(replayRect)
+-- 			mSleep(2000)
+-- 		end
 	
-	mSleep(5000)
-end
+-- 	mSleep(5000)
+-- end
