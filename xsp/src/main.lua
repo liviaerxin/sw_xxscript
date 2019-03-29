@@ -103,6 +103,7 @@ function runDungeon(number)
 	local first = "gift"
 	local buyWithCrystal = 0
 	local maxBuy = 7
+	local rune56 = 0
 	while (true)
 	do
 		if LoadingRect:exists() then
@@ -141,6 +142,12 @@ function runDungeon(number)
 				print("click ok")
 				tapRect(OKButtonRect)
 				mSleep(1100)
+			end
+
+			if FullScreen:exists(Start5RuneWRect) then
+				print("find rune of 5 or 6 stars")
+				rune56 = rune56 + 1
+				mSleep(1000)
 			end
 
 			if GetButtonRect:exists() then
@@ -205,16 +212,31 @@ function runDungeon(number)
 				mSleep(1310)
 			end
 			
+
+			if PurchaseCloseRect:exists() then
+				print("purchase close")
+				tapRect(PurchaseCloseRect)
+				mSleep(1110)
+			end
+			
 		end
 		-- completedNumber = completedNumber + 1
 		if (completedNumber > number) then
 			break
 		end
 
+		if FullScreen:exists(NetworkYesRect) then
+			print("unstable network yes")
+			tapRect(NetworkYesRect)
+			mSleep(2110)
+		end
+		
 		print("sleeping...")
-		print("have run the battle: "..completedNumber.."times")
+		print("have run the battle: "..completedNumber.." times")
+		print("have found  5 or 6 star rune: "..rune56.." times")
 		mSleep(3000)
 	end
+	print("total 5 or 6 star rune number is: "..rune56)
 	print("total run number is: "..completedNumber)
 end
 ------------------------mock procedures -----------------

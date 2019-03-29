@@ -193,6 +193,10 @@ PurchaseYesRect = Rect(453, 419, 606, 463, Pattern("453|419|0xdeba60,606|463|0xb
 PurchaseOkRect = Rect(578, 414, 709, 458, Pattern("578|414|0xdbb559,709|458|0xb9882f,623|429|0xf8e9ad,645|430|0xf8e9ad,656|429|0xf7e8ac,495|271|0xe2c582,776|269|0xe2c582",
 95, 0, 0, 0), false)
 
+-- Purchase Close
+PurchaseCloseRect = Rect(581, 603, 698, 642, Pattern("581|603|0xd1a55b,698|642|0xbb8441,606|620|0xf8f0cf,612|613|0xf1e8c7,618|618|0xf8f0cf,625|613|0xf8f0cf,640|620|0xf8f0cf,652|618|0xe5dbb9,665|625|0xf8f0cf",
+95, 0, 0, 0), false)
+
 -- Collect In Gift Box
 local collectGiftBoxPattern = Pattern("756|238|0xc6a463,863|277|0x8f6030,593|125|0xe5ddce,628|128|0xf4eedf,663|133|0xfcf7e8,767|187|0xf7cd67",
 95, 0, 0, 0)
@@ -214,3 +218,26 @@ DefeatedRect = Rect(423, 92, 843, 137, Pattern("423|92|0xffff90,843|137|0x8eb033
 -- Prepare
 PrepareRect = Rect(213, 357, 573, 435, Pattern("213|357|0xb28f58,573|435|0xb59562,330|380|0xf8e9ad,350|383|0xf8e9ad,395|392|0xf8e9ad,430|395|0xc6b47f",
 95, 0, 0, 0), false)
+
+
+---------------------------------------------- Common ---------------------------------------
+
+--  Unstable Network Yes
+NetworkYesRect = Rect(466, 413, 588, 457, Pattern("466|413|0xdab559,588|457|0xc19239,503|426|0xf8e9ad,516|427|0xf8e9ad,510|436|0xf8e9ad,508|442|0xaf9b69,380|251|0xe2c582,387|268|0xe2c582,393|251|0xe2c582",
+95, 0, 0, 0), true)
+
+-- star 6 rune yellow
+Start6RuneYRect = Rect(29, 437, 91, 441, Pattern("29|437|0xe0c759,91|441|0xf7c90b,44|439|0xfdd00c,55|437|0xfdd628,68|438|0xfdd00e,78|437|0xfdd113,82|437|0x50461b,93|437|0xe8c846",
+95, 0, 0, 0), true)
+
+-- star 5 rune yellow
+Start5RuneYRect = Rect(30, 437, 80, 442, Pattern("30|437|0xf1d861,80|442|0xefbc0a,45|437|0xfdd111,55|439|0xfdd00c,65|439|0xfccf0c,78|438|0xfdd00c,84|437|0x9f7d18,23|436|0x140d07",
+95, 0, 0, 0), true)
+
+-- star 6 rune white TODO:
+Start6RuneWRect = Rect(29, 437, 91, 441, Pattern("29|437|0xe0c759,91|441|0xf7c90b,44|439|0xfdd00c,55|437|0xfdd628,68|438|0xfdd00e,78|437|0xfdd113,82|437|0x50461b,93|437|0xe8c846",
+95, 0, 0, 0), true)
+
+-- star 5 rune white
+Start5RuneWRect = Rect(430, 241, 480, 247, Pattern("430|241|0xf6f7f7,480|247|0x78838a,443|242|0xf0f3f2,455|242|0xecefee,465|241|0xf4f6f5,476|242|0xf1f4f3,423|241|0x090804",
+95, 0, 0, 0), true)
