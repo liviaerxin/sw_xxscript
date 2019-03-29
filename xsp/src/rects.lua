@@ -117,9 +117,9 @@ local pausePattern = Pattern("204|643|0xffffff,268|700|0xffffff,225|660|0xffffff
 PauseRect = Rect(204, 643, 268, 700, pausePattern, false)
 
 -- Play
-local playPattern = Pattern("204|643|0xffffff,268|700|0xffffff,225|655|0xffffff,246|671|0xffffff,227|683|0xffffff,233|672|0xffffff",
+local playPattern = Pattern("205|642|0xffffff,266|702|0xffffff,267|645|0xffffff,207|702|0xffffff,232|675|0xffffff,245|673|0xffffff,233|665|0xffffff",
 95, 0, 0, 0)
-PlayRect = Rect(1000, 470, 1160, 550, playPattern, false)
+PlayRect = Rect(205, 642, 266, 702, playPattern, false)
 
 -- Time
 local timePattern = Pattern("1123|16|0xf8eaab,1158|28|0xdfb128,1141|17|0xf2e299,1145|27|0xdcb227,1160|22|0xf1d448",
@@ -142,9 +142,9 @@ local treasureBoxPattern = Pattern("515|297|0xf7f3b2|80,762|546|0xffffe8|80,731|
 TreasureBoxRect = Rect(515, 297, 762, 546, treasureBoxPattern, false)
 
 -- OK Button
-local oKButtonPattern = Pattern("574|575|0xcea259,706|622|0xb77f3c,631|589|0xf4e5a9,655|589|0xf4e5a9,655|604|0xf4e5a9",
+local oKButtonPattern = Pattern("592|578|0xcda059,692|623|0xb67d3b,622|598|0xf4e5a9,631|592|0x533810,645|591|0xf4e5a9,656|590|0xe9d99e,656|608|0xf4e5a9,643|607|0xf4e5a9,630|608|0xf4e5a9",
 95, 0, 0, 0)
-OKButtonRect = Rect(574, 575, 706, 622, oKButtonPattern, false)
+OKButtonRect = Rect(592, 578, 692, 623, oKButtonPattern, true)
 
 -- Get Button
 local getButtonPattern = Pattern("687|560|0xcfa258,815|609|0xb47b38,729|576|0xf4e5a9,754|579|0xf1e2a6,766|579|0xf4e5a9",
@@ -171,6 +171,10 @@ local giftBoxButtonPattern = Pattern("678|420|0xe2bf67,838|475|0xb37f25,716|438|
 95, 0, 1, 0)
 GiftBoxButtonRect = Rect(678, 420, 838, 475, giftBoxButtonPattern, false)
 
+-- GiftDisabledBox
+GiftDisabledBox = Rect(678, 425, 836, 470, Pattern("687|425|0x6e5a2c,836|470|0x5e4519,725|442|0x7c7456,743|448|0x776f52,811|456|0x7c7456",
+95, 0, 0, 0), false)
+
 -- Shop Button
 local shopButtonPattern = Pattern("432|418|0xe3c471,588|471|0xbc8c34,491|436|0xcbb983,508|441|0xf8e9ad,540|457|0xf8e9ad",
 95, 0, 1, 0)
@@ -181,7 +185,12 @@ local crystalEnergyPattern = Pattern("441|223|0xf7ecc2,636|538|0x7e5b2d,530|303|
 95, 0, 0, 0)
 CrystalEnergyRect = Rect(441, 223, 636, 538, crystalEnergyPattern, false)
 
+-- Purchase Yes
 PurchaseYesRect = Rect(453, 419, 606, 463, Pattern("453|419|0xdeba60,606|463|0xb6862c,507|435|0xf8e9ad,518|435|0xf8e9ad,511|449|0xdecd94,548|453|0xf8e9ad,440|269|0xf8e9ad,532|285|0xf8e9ad,569|278|0xf8e9ad",
+95, 0, 0, 0), false)
+
+-- Purchase Ok
+PurchaseOkRect = Rect(578, 414, 709, 458, Pattern("578|414|0xdbb559,709|458|0xb9882f,623|429|0xf8e9ad,645|430|0xf8e9ad,656|429|0xf7e8ac,495|271|0xe2c582,776|269|0xe2c582",
 95, 0, 0, 0), false)
 
 -- Collect In Gift Box

@@ -20,9 +20,10 @@ end
 
 -- tap function, interval is based on millisecond
 function tap(x, y, interval)
+	print("tap x: "..x..",y: "..y..",interval: "..interval.."ms")
 	touchDown(1, x, y)
 	mSleep(interval)
-	touchUp(1, x, y)  
+	touchUp(1, x, y) 
 end
 
 -- tap rect function, tap random point in rect with random holding time 
@@ -100,11 +101,13 @@ function runDungeon(number)
 		number = 1000
 	end
 	local first = "gift"
+	local buyWithCrystal = 0
+	local maxBuy = 7
 	while (true)
 	do
 		if LoadingRect:exists() then
 			print("is loading...")
-			mSleep(2000)
+			mSleep(3000)
 		end
 
 		-- keepScreen(true)
@@ -116,85 +119,100 @@ function runDungeon(number)
 
 		if PauseRect:exists() then
 			print("is fighting")
-			mSleep(6310)
+			mSleep(4310)
 		end
 
-		if FlashInVictoryRect:exists() then
-			print("is victory")
-			tapRect(FullScreen:resize(200, 200))
-			mSleep(1230)
-		end
-
-		if TreasureBoxRect:exists() then
-			print("find treasure")
-			completedNumber = completedNumber + 1
-			tapRect(TreasureBoxRect)
-			mSleep(1780)
-		end
-
-		if OKButtonRect:exists() then
-			print("click ok")
-			tapRect(OKButtonRect)
-			mSleep(2300)
-		end
-
-		if GetButtonRect:exists() then
-			print("click get")
-			tapRect(GetButtonRect)
-			mSleep(1560)
-		end
-
-		if ReplayRect:exists() then
-			print("click replay")
-			tapRect(ReplayRect)
-			mSleep(1780)
-		end
-
-		if GiftBoxButtonRect:exists() and (first == "gift") then
-			print("search energy in gift box")
-			tapRect(GiftBoxButtonRect)
-			mSleep(1800)
-		end
-
-		if CollectGiftBoxRect:exists() then
-			print("collect energy")
-			tapRect(CollectGiftBoxRect)
-			mSleep(1300)
-		else
-			print("no energy in gift box, change to shop")
-			first = "shop"
-		end
-
-		if BackGiftBoxRect:exists() then
-			print("exit gift box")
-			tapRect(BackGiftBoxRect)
-			mSleep(2310)
-		end
+		if (not LoadingRect:exists()) and (not GearRect:exists()) then
 		
-		if ShopButtonRect:exists() and (first == "shop") then
-			print("search energy in shop")
-			tapRect(ShopButtonRect)
-			mSleep(1800)
-		end
+			if FlashInVictoryRect:exists() then
+				print("is victory")
+				tapRect(FullScreen:resize(200, 200))
+				mSleep(1230)
+			end
 
-		if CrystalEnergyRect:exists() then
-			print("buy energy with crystal")
-			tapRect(CrystalEnergyRect)
-			mSleep(2310)
-		end
+			if TreasureBoxRect:exists() then
+				print("find treasure")
+				completedNumber = completedNumber + 1
+				tapRect(TreasureBoxRect)
+				mSleep(1980)
+			end
 
-		if PurchaseYesRect:exists() then
-			print("purchase yes")
-			tapRect(PurchaseYesRect)
-			mSleep(1310)
-		end
+			if FullScreen:exists(OKButtonRect) then
+				print("click ok")
+				tapRect(OKButtonRect)
+				mSleep(1100)
+			end
 
+			if GetButtonRect:exists() then
+				print("click get")
+				tapRect(GetButtonRect)
+				mSleep(1260)
+			end
+
+			if ReplayRect:exists() then
+				print("click replay")
+				tapRect(ReplayRect)
+				mSleep(1780)
+			end
+
+			if GiftBoxButtonRect:exists() and (first == "gift") then
+				print("search energy in gift box")
+				tapRect(GiftBoxButtonRect)
+				mSleep(1800)
+			end
+
+			if CollectGiftBoxRect:exists() then
+				print("collect energy")
+				tapRect(CollectGiftBoxRect)
+				mSleep(1300)
+			end
+
+			if BackGiftBoxRect:exists() then
+				print("exit gift box")
+				tapRect(BackGiftBoxRect)
+				mSleep(2310)
+			end
+			
+			if GiftDisabledBox:exists() and (first == "gift") then
+				print("switch to shop")
+				first = "shop"
+				mSleep(1100)
+			end
+			
+			if ShopButtonRect:exists() and (first == "shop") and (buyWithCrystal < maxBuy) then
+				print("search energy in shop")
+				tapRect(ShopButtonRect)
+				mSleep(1800)
+			end
+
+			
+			if CrystalEnergyRect:exists() then
+				print("buy energy with crystal")
+				tapRect(CrystalEnergyRect)
+				mSleep(2310)
+			end
+
+			if PurchaseYesRect:exists() then
+				print("purchase yes")
+				tapRect(PurchaseYesRect)
+				mSleep(1310)
+			end
+
+			if PurchaseOkRect:exists() then
+				print("purchase ok")
+				buyWithCrystal = buyWithCrystal + 1
+				tapRect(PurchaseOkRect)
+				mSleep(1310)
+			end
+			
+		end
 		-- completedNumber = completedNumber + 1
 		if (completedNumber > number) then
 			break
 		end
 
 		print("sleeping...")
+		print("have run the battle: "..completedNumber.."times")
 		mSleep(3000)
 	end
 	print("total run number is: "..completedNumber)
@@ -208,4 +226,9 @@ local currentScene = getCurrentScene(SceneList)
 print("current scene is: "..currentScene)
 clickDragonB10()
 clickStart()
-runDungeon(10)
+runDungeon(20)
+
+
+
+
+
