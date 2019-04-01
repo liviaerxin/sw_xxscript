@@ -1,12 +1,105 @@
 {
-	"style" : "default",
-	"config" : "save_sw_xxscript.dat",
-	"width" : 540,
-	"height" : 960,
-	"cancelscroll" : true,
-	"countdown" : 10,
-	"cancelname" : "取消",
-	"okname" : "确定",
-	"views" : [
-	]
+   "style" : "default",
+   "config" : "save_sw_xxscript.dat",
+   "width" : 540,
+   "height" : 960,
+   "cancelscroll" : true,
+   "countdown" : 10,
+   "cancelname" : "Cancel",
+   "okname" : "Start",
+   "views" : [
+      {
+         "text" : "setting",
+         "type" : "Page",
+         "views" : [
+            {
+               "align" : "center",
+               "color" : "0,0,0",
+               "size" : 20,
+               "text" : "Setting for Summoners War",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : 20,
+               "text" : "Scene:",
+               "type" : "Label"
+            },
+            {
+               "id" : "scene",
+               "text" : "scene",
+               "list" : "Arena,Dungeon",
+               "select" : "1",
+               "size" : 20,
+               "type" : "RadioGroup",
+               "orientation" : "horizontal"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : 20,
+               "text" : "Category:",
+               "type" : "Label"
+            },
+            {
+               "id" : "category",
+               "list" : "Gaint,Dragon,Necropolis",
+               "select" : "1",
+               "type" : "RadioGroup",
+               "width" : 20
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : 20,
+               "text" : "Stage:",
+               "type" : "Label"
+            },
+            {
+               "id" : "stage",
+               "list" : "B10",
+               "select" : "0",
+               "size" : 20,
+               "type" : "ComboBox"
+            },
+			{
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : 20,
+               "text" : "Buy Crystal Count:",
+               "type" : "Label"
+            },
+			{
+               "id" : "buyCount",
+               "list" : "0,2,4,6,8,10",
+               "select" : "0",
+               "size" : 20,
+               "type" : "ComboBox"
+            }
+         ]
+      },
+      {
+         "text" : "跳转示例",
+         "type" : "Page",
+         "views" : [
+            {
+               "color" : "100,110,200",
+               "extra" : [
+                  {
+                     "goto" : "http://www.baidu.com",
+                     "text" : "阅读原文"
+                  },
+                  {
+                     "goto" : "qq",
+                     "text" : "1602127440"
+                  }
+               ],
+               "size" : 30,
+               "text" : "阅读原文 QQ:1602127440",
+               "type" : "Label"
+            }
+         ]
+      }
+   ]
 }

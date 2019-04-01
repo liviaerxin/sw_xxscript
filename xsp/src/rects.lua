@@ -1,7 +1,7 @@
 Pattern = require("model.Pattern")
 
 local width, height = getScreenSize()
-FullScreen = Rect(0, 0, width - 1 , height - 1, nil, false)
+FullScreen = Rect(0, 0, height - 1 , width - 1, nil, false)
 
 -------------------------------------- Hall Scene ------------------------------------------------------
 ProfileRect = Rect(22, 37, 345, 106, Pattern("22|37|0xc7a664,345|106|0xa88342,77|16|0xbc9850,345|30|0xd9b976,101|96|0x996822",
@@ -59,8 +59,6 @@ RivalChooseRect = Rect(112, 42, 1138, 651, Pattern("150|231|0x917122,276|272|0x7
 BackArenaListRect = Rect(1108, 90, 1141, 126, Pattern("1108|90|0x4c3710,1141|126|0x4c3712,1122|102|0xf7efdf,1136|101|0xece4d4,1136|121|0xf8f0df,1121|118|0xe2dac8",
 95, 0, 0, 0), false)
 
-LoadingRect = Rect(150, 657, 1126, 675, Pattern("150|657|0x7e5a00,1126|675|0x725100,1128|657|0x664900,1147|663|0x7b5800,131|667|0x7a5700,150|678|0x735200",
-95, 0, 0, 0), false)
 
 -------------------------------------- Cairos Dungeon Scene---------------------------------------------------
 local dungeonListPattern = Pattern("160|200|0x4f382b,470|660|0x4f382b,533|65|0xf8f0e0,630|65|0xf8f0e0,737|63|0xf8f0e0",
@@ -221,6 +219,10 @@ PrepareRect = Rect(213, 357, 573, 435, Pattern("213|357|0xb28f58,573|435|0xb5956
 
 
 ---------------------------------------------- Common ---------------------------------------
+
+-- loading
+LoadingRect = Rect(150, 657, 1126, 675, Pattern("150|657|0x7e5a00,1126|675|0x725100,1128|657|0x664900,1147|663|0x7b5800,131|667|0x7a5700,150|678|0x735200",
+95, 0, 0, 0), false)
 
 --  Unstable Network Yes
 NetworkYesRect = Rect(466, 413, 588, 457, Pattern("466|413|0xdab559,588|457|0xc19239,503|426|0xf8e9ad,516|427|0xf8e9ad,510|436|0xf8e9ad,508|442|0xaf9b69,380|251|0xe2c582,387|268|0xe2c582,393|251|0xe2c582",
