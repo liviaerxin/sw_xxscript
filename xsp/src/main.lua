@@ -198,8 +198,8 @@ function clickB10()
 	lua_exit()
 end
 
-function clickStart()
-	if StartBattleRect:exists() then
+function clickStartBattle()
+	if FullScreen:exists(StartBattleRect) then
 		print("click start !")
 		tapRect(StartBattleRect)
 		mSleep(4000)
@@ -235,7 +235,7 @@ function runDungeon()
 		
 		if PauseRect:exists() then
 			print("is fighting")
-			mSleep(2310)
+			mSleep(3310)
 		end
 		
 		if not isLoadingOrFighting() then
@@ -353,7 +353,7 @@ function runDungeon()
 		print("sleeping...")
 		print("have run the battle: "..completedNumber.." times")
 		print("have found  5 or 6 star rune: "..rune56.." times")
-		mSleep(3000)
+		mSleep(1000)
 	end
 	print("total 5 or 6 star rune number is: "..rune56)
 	print("total run number is: "..completedNumber)
@@ -378,7 +378,7 @@ function fromDungeonSceneToTarget(target)
 			print("target['stage']: "..target["stage"].." not be recognized !")
 			lua_exit()
 		end
-		clickStart()
+		clickStartBattle()
 		runDungeon(Amount)
 	else
 		print("target['scene']: "..target["scene"].." not be recognized !")

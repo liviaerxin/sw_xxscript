@@ -95,9 +95,8 @@ local b9BattleButtonPattern = Pattern("1025|474|0xdbb65a,1098|539|0xaf7a20,1080|
 B9BattleButtonRect = Rect(1025, 474, 1098, 539, b9BattleButtonPattern, true)
 
 -- Start Battle
-local startBattlePattern = Pattern("1000|470|0xdeb960,1160|550|0xb9892f,1060|472|0x30241c,1097|484|0xfdfdfd,1016|531|0xdbce99,1139|528|0xeee0a6",
-95, 0, 0, 0)
-StartBattleRect = Rect(1000, 470, 1160, 550, startBattlePattern, false)
+StartBattleRect = Rect(996, 475, 1167, 547, Pattern("996|475|0xdbb458,1167|547|0xbf8e34,1006|522|0xf8e9ad,1026|531|0xdbce99,1065|526|0xf7e8ac,1082|521|0xf8e9ad,1082|538|0xa49a72,1157|532|0xd3c793,1140|523|0xf8e9ad",
+95, 0, 0, 0), true)
 
 -- Gear
 local gearPattern = Pattern("16|643|0xffffff,80|700|0xffffff,46|655|0xffffff,66|672|0xffffff,47|688|0xffffff",
@@ -160,9 +159,8 @@ local sellYesButtonPattern = Pattern("463|410|0xdebc62,592|461|0xb7872d,504|427|
 SellYesButtonRect = Rect(463, 410, 592, 461, sellYesButtonPattern, false)
 
 -- Replay
-local replayPattern = Pattern("219|346|0xaf8e5f,572|435|0xb59561,338|378|0xf8e9ad,392|377|0xf8e9ad,417|403|0xf8e9ad",
-95, 0, 1, 0)
-ReplayRect = Rect(219, 346, 572, 435, replayPattern, false)
+ReplayRect = Rect(335, 377, 462, 420, Pattern("335|377|0xf8e9ad,462|420|0x1e0703,343|378|0xf8e9ad,345|388|0xf8e9ad,347|396|0xf8e9ad,336|396|0xf8e9ad,413|385|0xeadaa0,422|387|0xf8e9ad,417|402|0xf8e9ad",
+95, 0, 0, 0), false)
 
 -- Gift Box
 local giftBoxButtonPattern = Pattern("678|420|0xe2bf67,838|475|0xb37f25,716|438|0xdecd94,741|443|0xf8e9ad,807|447|0xd6c58d",
