@@ -1,4 +1,4 @@
-package.path = package.path .. ";model/?.lua"
+package.path = package.path .. ";?.lua"
 Rect = require("Rect")
 Pattern = require("Pattern")
 require("rects")

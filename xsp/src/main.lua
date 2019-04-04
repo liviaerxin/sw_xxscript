@@ -1,53 +1,4 @@
 init("0", 1)
-
-------------------------------- Common Help Functions ----------------------------------------
--- random point function
--- @param rect parameter Rect
-function randomPoint(rect)
-	return math.random(rect.x1, rect.x2), math.random(rect.y1, rect.y2)
-end
-
--- tap function, interval is based on millisecond
-function tap(x, y, interval)
-	print("tap x: "..x..",y: "..y..",interval: "..interval.."ms")
-	touchDown(1, x, y)
-	mSleep(interval)
-	touchUp(1, x, y)
-end
-
--- tap rect function, tap random point in rect with random holding time
--- @param rect parameter Rect
-function tapRect(rect)
-	local x, y = randomPoint(rect)
-	local interval = math.random(150, 300)
-	tap(x, y, interval)
-end
-
--- time spending
--- @param string
-function ts(str)
-	if BT==nil then
-		BT=mTime()
-	end
-	local tt=mTime()
-	print(str..'--time spending:'..(tt-BT)..'ms')
-	BT=mTime()
-	
-end
-
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
-
 ----------------------------------------- Start --------------------------------
 --appid = frontAppName();
 --if string.match(appid, 'com.com2us.smon..*') == nil then 
@@ -59,8 +10,9 @@ end
 
 print("requiring...")
 
-Pattern = require("model.Pattern")
-Rect = require("model.Rect")
+Pattern = require("Pattern")
+Rect = require("Rect")
+require("commons")
 require("rects")
 
 print("sw script starting...")
@@ -75,7 +27,7 @@ SceneList = {
 	{"hall", ProfileRect},
 	{"map", WingMapRect},
 	{"arena", BattleArenaRect},
-	{"dungeon", DungeonListRect},
+	{"cairosDungeon", DungeonListRect},
 }
 
 Scene = { ["0"] = "arena", ["1"]= "dungeon"}
@@ -240,7 +192,7 @@ function runDungeon()
 		
 		if not isLoadingOrFighting() then
 			mSleep(3230)
-			if FlashInVictoryRect:exists() then
+			if FullScreen:exists(FlashInVictoryRect) then
 				print("is victory")
 				tapRect(FullScreen:resize(400, 200))
 				mSleep(1230)
@@ -331,13 +283,30 @@ function runDungeon()
 				mSleep(1310)
 			end
 			
-			
 			if PurchaseCloseRect:exists() then
 				print("purchase close")
 				tapRect(PurchaseCloseRect)
 				mSleep(1110)
 			end
+
+
+			-- Revive Operation
+			if FullScreen:exists(ReviveRect) then
+				FullScreen:existsAndClick(NoRect)
+				mSleep(1000)
+			end
 			
+			if FullScreen:existsAndClick(DefeatedRect) then
+				mSleep(1290)
+			end
+
+			if FullScreen:existsAndClick(PrepareRect) then
+				mSleep(1310)
+			end
+
+			if FullScreen:existsAndClick(StartBattleRect) then
+				mSleep(4310)
+			end
 		end
 		-- completedNumber = completedNumber + 1
 --		if (buyWithCrystal > maxBuy) then
@@ -360,7 +329,7 @@ function runDungeon()
 	print("total buy crystal number is: "..maxBuy)
 end
 
-function fromDungeonSceneToTarget(target)
+function fromCairosDungeonSceneToTarget(target)
 	if target["scene"] == "dungeon" then
 		if target["category"] == "dragon" then
 			clickDragon()
@@ -382,6 +351,9 @@ function fromDungeonSceneToTarget(target)
 		runDungeon(Amount)
 	else
 		print("target['scene']: "..target["scene"].." not be recognized !")
+		print("back from cairos dungeon")
+		FullScreen:exists(BackRect)
+		mSleep(1100)
 		lua_exit()
 	end
 end
@@ -411,9 +383,9 @@ elseif currentScene == "map" then
 	print("start from map")
 elseif currentScene == "arena" then
 	print("start from arena")
-elseif currentScene == "dungeon" then
-	print("start from dungeon")
-	fromDungeonSceneToTarget(Target)
+elseif currentScene == "cairosDungeon" then
+	print("start from cairos dungeon")
+	fromCairosDungeonSceneToTarget(Target)
 else
 	print("scene: "..currentScene.." not be recognized !")
 	lua_exit()

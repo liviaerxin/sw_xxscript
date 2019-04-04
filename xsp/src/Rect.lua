@@ -1,3 +1,4 @@
+require("commons")
 local Rect = {}
 
 Rect.__index = Rect
@@ -104,6 +105,21 @@ function Rect:float(x, y)
 	else
 		print("No need to rectify because the rect is not floated")
 	end
+end
+
+-- @param rect Rect
+-- @return boolean
+function Rect:existsAndClick(rect)
+    if self:exists(rect) then
+        if rect == nil then
+            tapRect(self)
+        else
+            tapRect(rect)
+        end
+        return true
+    else
+        return false
+    end
 end
 
 -- @param rect Rect

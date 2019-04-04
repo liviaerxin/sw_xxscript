@@ -1,4 +1,4 @@
-Pattern = require("model.Pattern")
+Pattern = require("Pattern")
 
 local width, height = getScreenSize()
 FullScreen = Rect(0, 0, height - 1 , width - 1, nil, false)
@@ -94,10 +94,6 @@ local b9BattleButtonPattern = Pattern("1025|474|0xdbb65a,1098|539|0xaf7a20,1080|
 100, 0, 0, 0)
 B9BattleButtonRect = Rect(1025, 474, 1098, 539, b9BattleButtonPattern, true)
 
--- Start Battle
-StartBattleRect = Rect(996, 475, 1167, 547, Pattern("996|475|0xdbb458,1167|547|0xbf8e34,1006|522|0xf8e9ad,1026|531|0xdbce99,1065|526|0xf7e8ac,1082|521|0xf8e9ad,1082|538|0xa49a72,1157|532|0xd3c793,1140|523|0xf8e9ad",
-95, 0, 0, 0), true)
-
 -- Gear
 local gearPattern = Pattern("16|643|0xffffff,80|700|0xffffff,46|655|0xffffff,66|672|0xffffff,47|688|0xffffff",
 95, 0, 0, 0)
@@ -122,16 +118,6 @@ PlayRect = Rect(205, 642, 266, 702, playPattern, false)
 local timePattern = Pattern("1123|16|0xf8eaab,1158|28|0xdfb128,1141|17|0xf2e299,1145|27|0xdcb227,1160|22|0xf1d448",
 95, 0, 0, 0)
 TimeRect = Rect(1123, 16, 1158, 28, timePattern, false)
-
--- Victory
-local victoryPattern = Pattern("452|96|0xffff34,798|133|0xffc20c,616|95|0xffff33,722|130|0xffc810,758|96|0xffff34",
-95, 0, 0, 0)
-VictoryRect = Rect(452, 96, 798, 133, victoryPattern, false)
-
--- FlashInVictory
-local flashInVictoryPattern = Pattern("642|337|0x2c1e09,681|393|0x2b1e09,666|337|0xfcfcd0,660|358|0xf7cd65,656|383|0xc88d2d",
-95, 0, 0, 0)
-FlashInVictoryRect = Rect(642, 337, 681, 393, flashInVictoryPattern, false)
 
 -- TreasureBox
 local treasureBoxPattern = Pattern("515|297|0xf7f3b2|80,762|546|0xffffe8|80,731|302|0xffffd2|80,795|398|0xffffce|80,468|468|0xffffcf|80",
@@ -203,24 +189,40 @@ local backGiftBoxPattern = Pattern("902|117|0x4e3911,936|153|0x493612,916|127|0x
 95, 0, 0, 0)
 BackGiftBoxRect = Rect(902, 117, 936, 153, backGiftBoxPattern, false)
 
--- Revive
-ReviveRect = Rect(320, 435, 586, 506, Pattern("320|435|0xb8955f,586|506|0xb7965d,376|460|0xffe9f3,377|467|0xde1f4f,386|470|0x88082c,490|471|0xf8e9ad,521|476|0xe8d89e,537|480|0xf8e9ad",
-95, 0, 0, 0), false)
-
--- Defeated
-DefeatedRect = Rect(423, 92, 843, 137, Pattern("423|92|0xffff90,843|137|0x8eb033,457|96|0xffff34,510|93|0xffff4f,823|95|0xffff32,812|131|0xa5bf37",
-95, 0, 0, 0), false)
-
--- Prepare
-PrepareRect = Rect(213, 357, 573, 435, Pattern("213|357|0xb28f58,573|435|0xb59562,330|380|0xf8e9ad,350|383|0xf8e9ad,395|392|0xf8e9ad,430|395|0xc6b47f",
-95, 0, 0, 0), false)
-
 
 ---------------------------------------------- Common ---------------------------------------
 
 -- loading
 LoadingRect = Rect(150, 657, 1126, 675, Pattern("150|657|0x7e5a00,1126|675|0x725100,1128|657|0x664900,1147|663|0x7b5800,131|667|0x7a5700,150|678|0x735200",
 95, 0, 0, 0), false)
+
+-- Start Battle
+StartBattleRect = Rect(996, 475, 1167, 547, Pattern("996|475|0xdbb458,1167|547|0xbf8e34,1006|522|0xf8e9ad,1026|531|0xdbce99,1065|526|0xf7e8ac,1082|521|0xf8e9ad,1082|538|0xa49a72,1157|532|0xd3c793,1140|523|0xf8e9ad",
+95, 0, 0, 0), true)
+
+-- Victory
+VictoryRect = Rect(452, 96, 798, 133, Pattern("452|96|0xffff34,798|133|0xffc20c,616|95|0xffff33,722|130|0xffc810,758|96|0xffff34",
+95, 0, 0, 0), true)
+
+-- FlashInVictory
+FlashInVictoryRect = Rect(642, 337, 681, 393, Pattern("642|337|0x2c1e09,681|393|0x2b1e09,666|337|0xfcfcd0,660|358|0xf7cd65,656|383|0xc88d2d",
+95, 0, 0, 0), true)
+
+-- Revive
+ReviveRect = Rect(320, 435, 586, 506, Pattern("320|435|0xb8955f,586|506|0xb7965d,376|460|0xffe9f3,377|467|0xde1f4f,386|470|0x88082c,490|471|0xf8e9ad,521|476|0xe8d89e,537|480|0xf8e9ad",
+95, 0, 0, 0), true)
+
+-- No
+NoRect = Rect(320, 435, 586, 506, Pattern("805|457|0xecdca2,843|478|0xf8e9ad,805|477|0xf8e9ad,813|470|0xf8e9ad,821|458|0xf8e9ad,821|480|0xf8e9ad,830|470|0xf8e9ad,837|458|0xf8e9ad,845|468|0xf8e9ad,837|480|0xf8e9ad",
+95, 0, 0, 0), true)
+
+-- Defeated
+DefeatedRect = Rect(423, 92, 843, 137, Pattern("423|92|0xffff90,843|137|0x8eb033,457|96|0xffff34,510|93|0xffff4f,823|95|0xffff32,812|131|0xa5bf37",
+95, 0, 0, 0), true)
+
+-- Prepare (need be shrinked)
+PrepareRect = Rect(213, 357, 573, 435, Pattern("213|357|0xb28f58,573|435|0xb59562,330|380|0xf8e9ad,350|383|0xf8e9ad,395|392|0xf8e9ad,430|395|0xc6b47f",
+95, 0, 0, 0), true)
 
 --  Unstable Network Yes
 NetworkYesRect = Rect(466, 413, 588, 457, Pattern("466|413|0xdab559,588|457|0xc19239,503|426|0xf8e9ad,516|427|0xf8e9ad,510|436|0xf8e9ad,508|442|0xaf9b69,380|251|0xe2c582,387|268|0xe2c582,393|251|0xe2c582",
@@ -241,3 +243,33 @@ Start6RuneWRect = Rect(29, 437, 91, 441, Pattern("29|437|0xe0c759,91|441|0xf7c90
 -- star 5 rune white
 Start5RuneWRect = Rect(430, 241, 480, 247, Pattern("430|241|0xf6f7f7,480|247|0x78838a,443|242|0xf0f3f2,455|242|0xecefee,465|241|0xf4f6f5,476|242|0xf1f4f3,423|241|0x090804",
 95, 0, 0, 0), true)
+
+-- level 40 of monster 
+Level40Rect = Rect(95, 650, 108, 665, Pattern("95|650|0xf8f0e0,108|665|0x948c81,91|656|0xf4ecdc,88|661|0xd1cabd,96|661|0xd1cabd,103|657|0xf1e9da,111|650|0xf8f0e0,113|655|0xf8f0e0,113|660|0xdbd4c6,100|661|0x988978",
+95, 0, 0, 0), true)
+
+-- Back
+BackRect = Rect(1221, 42, 1255, 76, Pattern("1221|42|0x4b3610,1255|76|0x4b3610,1232|52|0xf7efdf,1248|51|0xf6eede,1241|61|0xf8f0e0,1241|63|0xf8f0e0,1232|70|0xf4ebdb,1248|70|0xf8f0e0",
+95, 0, 0, 0), true)
+
+---------------------------------------------- Senario Farming Scene ---------------------------------------
+FaimonVolcanoListRect = Rect(663, 51, 1253, 678, Pattern("663|51|0xb69557,1253|678|0xb99758,862|48|0xf8f0e0,861|58|0xe7e0d1,852|67|0xa29d93,961|48|0xf8f0e0,970|65|0xb2aca1,975|48|0xf8f0e0,981|60|0xdad3c5",
+95, 0, 0, 0), false)
+
+LevelHellRect = Rect(996, 122, 1232, 148, Pattern("996|122|0x743c28,1232|148|0x54180b,1010|131|0xcbea4e,1010|145|0xa8b93e,1017|145|0xa8b93e,1115|127|0xfdf3ca,1115|145|0xfdf3ca,1126|127|0xf1e6be,1127|145|0xfdf3ca,1121|136|0xfdf3ca",
+95, 0, 0, 0), false)
+
+Senario1Rect = Rect(688, 202, 1227, 311, Pattern("688|202|0xd0a95f,1227|311|0xd0a95f,705|213|0xf8f0cf,711|210|0xf8f0cf,711|228|0xf8f0cf,723|227|0xf8f0cf,711|222|0xf8f0cf,711|217|0xf8f0cf,711|226|0xf8f0cf,711|213|0xf8f0cf",
+95, 0, 0, 0), true)
+
+Senario2Rect = Rect(691, 335, 1230, 438, Pattern("691|335|0xd0a95f,1230|438|0xd0a95f,705|345|0xf8f0cf,710|342|0xf8f0cf,715|345|0xf0e7c6,712|352|0xf3ebca,707|356|0xf8f0cf,707|360|0xf8f0cf,715|360|0xf8f0cf,723|360|0xf4eccb",
+95, 0, 0, 0), true)
+
+Senario3Rect = Rect(691, 470, 1228, 572, Pattern("691|470|0xd0a95f,1228|572|0xd0a95f,706|477|0xf8f0cf,710|475|0xe7ddbc,715|480|0xf1e9c8,708|485|0xf8f0cf,715|490|0xf8f0cf,710|493|0xf8f0cf,705|491|0xf8f0cf,723|493|0xf8f0cf",
+95, 0, 0, 0), true)
+
+SenarioBattleRect = Rect(1140, 356, 1215, 427, Pattern("1140|356|0xe0bc66,1215|427|0xae791e,1147|411|0xf8e9ad,1147|411|0xf8e9ad,1178|407|0xf8e9ad,1187|407|0xf8e9ad",
+95, 0, 0, 0), true)
+
+FriendListRect = Rect(20, 570, 878, 695, Pattern("20|570|0x1c1408,878|695|0x20170a",
+95, 0, 0, 0), false)
